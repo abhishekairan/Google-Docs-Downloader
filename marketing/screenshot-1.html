@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Screenshot 1 – pick tabs</title>
+<link rel="stylesheet" href="../popup.css">
+<link rel="stylesheet" href="marketing.css">
+<style>
+  /* popup.css sizes the popup via html/body; neutralise that here */
+  html, body { width: auto; }
+</style>
+</head>
+<body>
+<div class="stage s1280">
+  <div class="blob b1"></div><div class="blob b2"></div>
+
+  <div class="headline" style="left:64px; top:70px; width:470px">
+    <span class="kicker">Tab Downloader for Google Docs</span>
+    <h1>Download <em>only the tabs</em> you need.</h1>
+    <p>Google Docs gives you "current tab" or "all tabs". This gives you a checklist — every tab and subtab, each saved as its own file.</p>
+    <ul class="bullets">
+      <li><span class="tick">✓</span> Pick any combination of tabs and subtabs</li>
+      <li><span class="tick">✓</span> One click, one file per tab</li>
+      <li><span class="tick">✓</span> Nothing leaves your browser</li>
+    </ul>
+  </div>
+
+  <div id="doc"></div>
+  <div class="popup-anchor" id="popup" style="right:70px; top:60px"></div>
+</div>
+<script src="mock.js"></script>
+<script>
+  const tabs = [
+    { title: 'Overview', checked: false, current: true },
+    { title: 'Research', checked: true },
+    { title: 'User interviews', level: 1, checked: true },
+    { title: 'Survey results', level: 1, checked: false },
+    { title: 'Requirements', checked: true },
+    { title: 'Roadmap', checked: false },
+    { title: 'Launch plan', checked: true },
+    { title: 'Appendix', checked: false },
+  ];
+  const doc = renderDocBackdrop(document.getElementById('doc'), { title: 'Product Requirements', tabs, activeIndex: 0 });
+  doc.style.left = '520px'; doc.style.top = '150px';
+  renderMockPopup(document.getElementById('popup'), {
+    view: 'select', doc: 'Product Requirements', tabs, formats: ['pdf'],
+    options: { open: false },
+  });
+</script>
+</body>
+</html>

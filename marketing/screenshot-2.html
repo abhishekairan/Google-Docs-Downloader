@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Screenshot 2 – formats and naming</title>
+<link rel="stylesheet" href="../popup.css">
+<link rel="stylesheet" href="marketing.css">
+<style> html, body { width: auto; } </style>
+</head>
+<body>
+<div class="stage s1280">
+  <div class="blob b1"></div><div class="blob b2"></div>
+
+  <div class="headline" style="left:64px; top:70px; width:470px">
+    <span class="kicker">Formats &amp; file names</span>
+    <h1>Several formats <em>at once</em>, named the way you want.</h1>
+    <p>PDF, Word, OpenDocument, RTF, plain text, Markdown, HTML and EPUB. Select more than one and every tab is exported in each of them.</p>
+    <ul class="bullets">
+      <li><span class="tick">✓</span> "Document – Tab.pdf", numbered, or tab-only</li>
+      <li><span class="tick">✓</span> Subtabs prefixed with their parent tab</li>
+      <li><span class="tick">✓</span> Save into a folder, or bundle into one .zip</li>
+    </ul>
+  </div>
+
+  <div id="doc"></div>
+  <div class="popup-anchor" id="popup" style="right:70px; top:40px"></div>
+</div>
+<script src="mock.js"></script>
+<script>
+  const tabs = [
+    { title: 'Overview', checked: true, current: true },
+    { title: 'Research', checked: true },
+    { title: 'User interviews', level: 1, checked: true },
+    { title: 'Requirements', checked: true },
+    { title: 'Roadmap', checked: true },
+  ];
+  const doc = renderDocBackdrop(document.getElementById('doc'), { title: 'Product Requirements', tabs, activeIndex: 0, bodyLines: 12 });
+  doc.style.left = '520px'; doc.style.top = '150px';
+  renderMockPopup(document.getElementById('popup'), {
+    view: 'select', doc: 'Product Requirements', tabs, formats: ['pdf', 'docx', 'md'],
+    options: { open: true, naming: 'num-doc-tab', includeParents: true, subfolder: true, preview: 'e.g. Product Requirements/01 – Product Requirements – Overview.pdf, …' },
+  });
+</script>
+</body>
+</html>

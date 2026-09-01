@@ -1,0 +1,7 @@
+*.zip
+dist/
+node_modules/
+marketing/out/*.log
+marketing/out/manifest.json
+.DS_Store
+Thumbs.db

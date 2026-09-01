@@ -1,0 +1,178 @@
+/* Shared styles for marketing renders (screenshots, promo tiles, brochure). */
+:root {
+  --blue: #1a73e8;
+  --blue-dark: #0b57d0;
+  --ink: #1f1f1f;
+  --ink-soft: #444746;
+  --muted: #5f6368;
+  --line: #dadce0;
+  --paper: #ffffff;
+  --sky: #eef4ff;
+  --mint: #e6f4ea;
+  --ok: #188038;
+  font-family: Roboto, "Segoe UI", system-ui, sans-serif;
+  color: var(--ink);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #ffffff; color: var(--ink); color-scheme: light; }
+
+/* Marketing renders are always light, whatever the OS theme says. popup.css
+   is loaded first, so re-declaring its light tokens here wins in dark mode. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #ffffff; --fg: #1f1f1f; --muted: #5f6368; --border: #dadce0; --hover: #f1f3f4;
+    --accent: #1a73e8; --accent-fg: #ffffff; --accent-soft: #e8f0fe;
+    --ok: #188038; --warn: #b06000; --err: #c5221f;
+  }
+}
+.stage, .brochure, .mock-popup { color-scheme: light; }
+
+/* Fixed-size stage that matches the target image exactly */
+.stage {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f6f9ff 0%, #eaf1ff 55%, #f9fbff 100%);
+}
+.stage.s1280 { width: 1280px; height: 800px; }
+.stage.s440 { width: 440px; height: 280px; }
+.stage.s1400 { width: 1400px; height: 560px; }
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.blob.b1 { width: 520px; height: 520px; background: #c7dbff; top: -180px; right: -120px; }
+.blob.b2 { width: 420px; height: 420px; background: #d8f0e3; bottom: -200px; left: -120px; }
+
+/* Headline block */
+.headline {
+  position: absolute;
+  z-index: 2;
+}
+.headline .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  background: #dfe9ff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+.headline h1 {
+  margin: 0 0 14px;
+  font-size: 44px;
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.headline h1 em { color: var(--blue); font-style: normal; }
+.headline p {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 480px;
+}
+.bullets { margin: 26px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.bullets li { display: flex; align-items: center; gap: 12px; font-size: 17px; color: var(--ink); }
+.bullets .tick {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--mint); color: var(--ok);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700; flex: none;
+}
+
+/* The popup replica (uses real popup.css inside) */
+.mock-popup {
+  width: 380px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(26, 55, 105, 0.22), 0 4px 14px rgba(26, 55, 105, 0.12);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.mock-popup .tab-list { max-height: none; }
+.popup-anchor { position: absolute; z-index: 3; }
+
+/* Stylised (non-Google) editor backdrop */
+.doc-backdrop {
+  position: absolute;
+  z-index: 1;
+  width: 900px;
+  height: 640px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 24px 50px rgba(26, 55, 105, 0.14);
+  overflow: hidden;
+  border: 1px solid #e3e8f0;
+}
+.doc-topbar { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid #eceff4; }
+.doc-logo { width: 30px; height: 38px; border-radius: 4px; background: var(--blue); position: relative; }
+.doc-logo::after { content: ""; position: absolute; left: 7px; right: 7px; top: 14px; height: 3px; background: #fff; box-shadow: 0 6px 0 #fff, 0 12px 0 #fff; opacity: 0.9; }
+.doc-name { font-size: 17px; font-weight: 500; }
+.doc-menu { font-size: 12px; color: var(--muted); margin-top: 3px; white-space: pre; }
+.doc-body { display: flex; height: calc(100% - 63px); background: #f8fafd; }
+.doc-side { width: 220px; padding: 14px 10px; border-right: 1px solid #eceff4; background: #fff; }
+.doc-side-title { font-size: 12px; color: var(--muted); padding: 0 8px 10px; }
+.doc-side-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; font-size: 13.5px; color: var(--ink); }
+.doc-side-item.active { background: #dfe9ff; color: var(--blue-dark); font-weight: 500; }
+.doc-side-icon { width: 14px; height: 14px; border: 1.5px solid currentColor; border-radius: 3px; opacity: 0.7; flex: none; }
+.doc-page { flex: 1; margin: 26px 40px; background: #fff; border: 1px solid #e3e8f0; padding: 46px 56px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.doc-h1 { font-size: 26px; font-weight: 500; margin-bottom: 22px; }
+.doc-line { height: 10px; border-radius: 5px; background: #e8ecf3; margin-bottom: 12px; }
+.doc-gap { height: 14px; }
+
+/* File explorer mock */
+.files {
+  position: absolute; z-index: 3;
+  width: 560px; background: #fff; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 30px 60px rgba(26, 55, 105, 0.2); border: 1px solid rgba(0,0,0,0.06);
+}
+.files-head { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.files-head b { color: var(--ink); font-weight: 500; }
+.files-row { display: flex; align-items: center; gap: 12px; padding: 9px 16px; font-size: 13.5px; border-bottom: 1px solid #f1f3f4; }
+.files-row:last-child { border-bottom: none; }
+.files-row .ext { width: 34px; height: 24px; border-radius: 5px; font-size: 10px; font-weight: 700; color: #fff; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.ext.pdf { background: #d93025; } .ext.md { background: #202124; } .ext.docx { background: #185abc; } .ext.zip { background: #f9ab00; } .ext.txt { background: #5f6368; }
+.files-row .size { margin-left: auto; color: var(--muted); font-size: 12px; }
+.files-row.folder { background: #fbfcfe; color: var(--muted); }
+
+/* Promo tiles */
+.tile { position: relative; width: 100%; height: 100%; display: flex; align-items: center; }
+.tile .icon { flex: none; }
+.tile .name { font-size: 30px; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; }
+.tile .tag { font-size: 15px; color: var(--ink-soft); margin-top: 8px; line-height: 1.4; }
+.chips-demo { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
+.chips-demo span { font-size: 12px; padding: 4px 10px; border-radius: 14px; border: 1px solid var(--line); background: #fff; color: var(--ink-soft); }
+.chips-demo span.on { background: #e8f0fe; border-color: var(--blue); color: var(--blue); font-weight: 500; }
+
+/* Brochure */
+.brochure { position: relative; width: 1280px; height: 800px; overflow: hidden; background: #fff; }
+.brochure .side {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 470px;
+  background: linear-gradient(160deg, #0b57d0 0%, #1a73e8 60%, #4a90f0 100%);
+  color: #fff; padding: 56px 46px;
+}
+.brochure .side h1 { font-size: 40px; line-height: 1.12; margin: 26px 0 16px; font-weight: 700; }
+.brochure .side p { font-size: 17px; line-height: 1.55; opacity: 0.92; margin: 0 0 22px; }
+.brochure .side .pill { display: inline-block; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.18); }
+.brochure .side .cta { margin-top: 30px; display: inline-block; background: #fff; color: var(--blue-dark); font-weight: 600; padding: 13px 20px; border-radius: 10px; font-size: 16px; }
+.brochure .side .fine { position: absolute; bottom: 40px; left: 46px; right: 46px; font-size: 12px; opacity: 0.8; line-height: 1.5; }
+.brochure .main { position: absolute; left: 470px; top: 0; right: 0; bottom: 0; padding: 52px 56px; }
+.brochure h2 { font-size: 22px; margin: 0 0 18px; font-weight: 600; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 22px; }
+.card { background: #f6f9ff; border: 1px solid #e3ebfb; border-radius: 12px; padding: 16px 18px; }
+.card .t { font-weight: 600; font-size: 15.5px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.card .d { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+.card .num { width: 24px; height: 24px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 6px; }
+.formats-line { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+.formats-line span { font-size: 12.5px; padding: 5px 11px; border-radius: 14px; background: #e8f0fe; color: var(--blue-dark); font-weight: 500; }
+.footnote { margin-top: 22px; font-size: 12.5px; color: var(--muted); line-height: 1.5; }

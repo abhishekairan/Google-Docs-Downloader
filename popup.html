@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tab Downloader for Google Docs</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header">
+    <img src="icons/icon32.png" width="24" height="24" alt="">
+    <div class="header-text">
+      <h1>Docs Tab Downloader</h1>
+      <p id="docTitle" class="doc-title" title=""></p>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Not on a document / could not read the page -->
+    <section id="view-empty" class="view hidden">
+      <p id="emptyMsg" class="empty-msg"></p>
+      <div class="footer">
+        <button id="retryBtn" class="btn secondary">Try again</button>
+      </div>
+    </section>
+
+    <!-- Tab picker -->
+    <section id="view-select" class="view hidden">
+      <div class="toolbar">
+        <span id="selCount" class="muted"></span>
+        <span class="spacer"></span>
+        <button class="link" id="selAll" type="button">All</button>
+        <button class="link" id="selNone" type="button">None</button>
+        <button class="link" id="selCurrent" type="button">Current</button>
+      </div>
+
+      <ul id="tabList" class="tab-list" role="listbox" aria-multiselectable="true"></ul>
+
+      <details id="options" class="options">
+        <summary>Options</summary>
+        <label class="row">
+          <span>File names</span>
+          <select id="naming">
+            <option value="doc-tab">Document – Tab</option>
+            <option value="tab">Tab only</option>
+            <option value="num-tab">01 – Tab</option>
+            <option value="num-doc-tab">01 – Document – Tab</option>
+          </select>
+        </label>
+        <label class="row check">
+          <input type="checkbox" id="includeParents">
+          <span>Prefix subtabs with their parent tab name</span>
+        </label>
+        <label class="row check">
+          <input type="checkbox" id="subfolder">
+          <span>Save into a folder named after the document</span>
+        </label>
+        <label class="row check">
+          <input type="checkbox" id="zipMode">
+          <span>Bundle everything into a single .zip</span>
+        </label>
+        <p id="filenamePreview" class="preview muted"></p>
+      </details>
+
+      <div class="formats-block">
+        <div class="toolbar">
+          <span class="muted">Formats</span>
+          <span class="spacer"></span>
+          <span id="fmtHint" class="muted small"></span>
+        </div>
+        <div id="formats" class="chips" role="group" aria-label="File formats"></div>
+      </div>
+
+      <div class="footer">
+        <span id="fileCount" class="muted"></span>
+        <span class="spacer"></span>
+        <button id="downloadBtn" class="btn primary" type="button">Download</button>
+      </div>
+    </section>
+
+    <!-- Progress -->
+    <section id="view-progress" class="view hidden">
+      <ul id="progressList" class="tab-list progress"></ul>
+      <p id="jobMsg" class="job-msg"></p>
+      <div class="footer">
+        <span id="jobSummary" class="muted"></span>
+        <span class="spacer"></span>
+        <button id="cancelBtn" class="btn secondary" type="button">Cancel</button>
+        <button id="doneBtn" class="btn primary hidden" type="button">Done</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+  <script src="dev-bridge.js"></script><!-- DEV ONLY: removed by tools/build.js -->
+</body>
+</html>

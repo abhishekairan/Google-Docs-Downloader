@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Screenshot 4 – result</title>
+<link rel="stylesheet" href="../popup.css">
+<link rel="stylesheet" href="marketing.css">
+<style> html, body { width: auto; } </style>
+</head>
+<body>
+<div class="stage s1280">
+  <div class="blob b1"></div><div class="blob b2"></div>
+
+  <div class="headline" style="left:64px; top:70px; width:470px">
+    <span class="kicker">The result</span>
+    <h1>Clean files, <em>sensible names</em>, no clean-up.</h1>
+    <p>Each tab lands in your Downloads folder as its own file — optionally inside a folder named after the document, or zipped together.</p>
+    <ul class="bullets">
+      <li><span class="tick">✓</span> No sign-in, no OAuth, no servers</li>
+      <li><span class="tick">✓</span> Uses the Google session you already have</li>
+      <li><span class="tick">✓</span> Preferences remembered between documents</li>
+    </ul>
+  </div>
+
+  <div id="doc"></div>
+  <div class="files" style="right:90px; top:120px">
+    <div class="files-head">Downloads › <b>Product Requirements</b></div>
+    <div class="files-row"><span class="ext pdf">PDF</span>Product Requirements – Overview.pdf<span class="size">184 KB</span></div>
+    <div class="files-row"><span class="ext pdf">PDF</span>Product Requirements – Research.pdf<span class="size">412 KB</span></div>
+    <div class="files-row"><span class="ext pdf">PDF</span>Product Requirements – Research – User interviews.pdf<span class="size">96 KB</span></div>
+    <div class="files-row"><span class="ext pdf">PDF</span>Product Requirements – Requirements.pdf<span class="size">238 KB</span></div>
+    <div class="files-row"><span class="ext md">MD</span>Product Requirements – Overview.md<span class="size">6 KB</span></div>
+    <div class="files-row"><span class="ext md">MD</span>Product Requirements – Research.md<span class="size">21 KB</span></div>
+    <div class="files-row"><span class="ext md">MD</span>Product Requirements – Research – User interviews.md<span class="size">4 KB</span></div>
+    <div class="files-row"><span class="ext md">MD</span>Product Requirements – Requirements.md<span class="size">9 KB</span></div>
+    <div class="files-row"><span class="ext zip">ZIP</span>Product Requirements – tabs (pdf+md).zip<span class="size">970 KB</span></div>
+  </div>
+</div>
+<script src="mock.js"></script>
+<script>
+  const tabs = [{ title: 'Overview' }, { title: 'Research' }, { title: 'User interviews', level: 1 }, { title: 'Requirements' }];
+  const doc = renderDocBackdrop(document.getElementById('doc'), { title: 'Product Requirements', tabs, activeIndex: 1, bodyLines: 12 });
+  doc.style.left = '560px'; doc.style.top = '250px'; doc.style.width = '820px'; doc.style.height = '600px';
+</script>
+</body>
+</html>

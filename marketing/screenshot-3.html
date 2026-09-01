@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Screenshot 3 – progress</title>
+<link rel="stylesheet" href="../popup.css">
+<link rel="stylesheet" href="marketing.css">
+<style> html, body { width: auto; } </style>
+</head>
+<body>
+<div class="stage s1280">
+  <div class="blob b1"></div><div class="blob b2"></div>
+
+  <div class="headline" style="left:64px; top:70px; width:470px">
+    <span class="kicker">Reliable on big documents</span>
+    <h1>Thirty tabs? <em>Go get a coffee.</em></h1>
+    <p>Google limits how fast a document can be exported. The extension paces itself to that limit, retries automatically, shows an ETA — and keeps going after you close the popup.</p>
+    <ul class="bullets">
+      <li><span class="tick">✓</span> Live per-file status</li>
+      <li><span class="tick">✓</span> Automatic retry when Google throttles</li>
+      <li><span class="tick">✓</span> Markdown &amp; text: all tabs in one request</li>
+    </ul>
+  </div>
+
+  <div id="doc"></div>
+  <div class="popup-anchor" id="popup" style="right:70px; top:60px"></div>
+</div>
+<script src="mock.js"></script>
+<script>
+  const tabs = [
+    { title: 'Overview' }, { title: 'Research' }, { title: 'User interviews', level: 1 },
+    { title: 'Requirements' }, { title: 'Roadmap' }, { title: 'Launch plan' }, { title: 'Appendix' },
+  ];
+  const doc = renderDocBackdrop(document.getElementById('doc'), { title: 'Product Requirements', tabs, activeIndex: 3 });
+  doc.style.left = '520px'; doc.style.top = '150px';
+  const D = 'Product Requirements – ';
+  renderMockPopup(document.getElementById('popup'), {
+    view: 'progress', doc: 'Product Requirements',
+    progress: [
+      { name: D + 'Overview.pdf', status: 'done' },
+      { name: D + 'Research.pdf', status: 'done' },
+      { name: D + 'Research – User interviews.pdf', status: 'done' },
+      { name: D + 'Requirements.pdf', status: 'done' },
+      { name: D + 'Roadmap.pdf', status: 'done' },
+      { name: D + 'Launch plan.pdf', status: 'done' },
+      { name: D + 'Appendix.pdf', status: 'downloading' },
+      { name: D + 'Overview.md', status: 'queued' },
+      { name: D + 'Research.md', status: 'queued' },
+      { name: D + 'Research – User interviews.md', status: 'queued' },
+    ],
+    summary: 'Downloading 6 / 10… ≈ 20 s left',
+    info: 'Google limits exports to about one every 5 s per document (after a short burst). The extension paces itself to that limit – you can close this popup, downloads continue.',
+  });
+</script>
+</body>
+</html>
