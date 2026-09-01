@@ -34,4 +34,4 @@ in to.
 
 ## Contact
 
-Questions about this policy: admin@craftingdex.com
+Questions about this policy: abhishekairan1234@gmail.com
